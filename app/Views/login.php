@@ -60,19 +60,7 @@
           <div class="offset-0 col-12 d-none d-lg-flex offset-md-1 col-lg h-lg-100">
             <div class="min-h-100 d-flex align-items-center">
               <div class="w-100 w-lg-75 w-xxl-50">
-                <!-- <div>
-                  <div class="mb-5">
-                    <h1 class="display-3 text-white">Multiple Niches</h1>
-                    <h1 class="display-3 text-white">Ready for Your Project</h1>
-                  </div>
-                  <p class="h6 text-white lh-1-5 mb-5">
-                    Dynamically target high-payoff intellectual capital for customized technologies. Objectively integrate emerging core competencies before
-                    process-centric communities...
-                  </p>
-                  <div class="mb-5">
-                    <a class="btn btn-lg btn-outline-white" href="index.html">Learn More</a>
-                  </div>
-                </div> -->
+
               </div>
             </div>
           </div>
@@ -120,6 +108,84 @@
         </div>
       </div>
     </div>
+    <script>
+   // Saat halaman dimuat
+   document.addEventListener("DOMContentLoaded", function() {
+  // Cek apakah ada cookie dengan nama "remember_me"
+      if (getCookie("remember_me")) {
+    // Jika ada, tandai checkbox "Ingat Saya"
+         document.getElementById("flexCheckDefault").checked = true;
+    // Dan isi field username dan password dengan nilai cookie
+         var cookie = JSON.parse(getCookie("remember_me"));
+         if (cookie && cookie.username && cookie.password) {
+            document.getElementsByName("username")[0].value = cookie.username;
+            document.getElementsByName("password")[0].value = cookie.password;
+         }
+      }
+   });
+
+// Saat form login disubmit
+   document.querySelector("form").addEventListener("submit", function() {
+  // Cek apakah checkbox "Ingat Saya" di-tick
+      if (document.getElementById("flexCheckDefault").checked) {
+    // Jika iya, buat cookie dengan nama "remember_me" yang berisi nilai username dan password
+         var username = document.getElementsByName("username")[0].value;
+         var password = document.getElementsByName("password")[0].value;
+         if (username && password) {
+            var cookie = {
+               username: username,
+               password: password
+            };
+            setCookie("remember_me", JSON.stringify(cookie), 30);
+         }
+      } else {
+    // Jika tidak, hapus cookie dengan nama "remember_me" (jika ada)
+         deleteCookie("remember_me");
+      }
+   });
+
+// Fungsi untuk membuat cookie
+   function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+         var date = new Date();
+         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+         expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+   }
+
+// Fungsi untuk membaca nilai cookie
+   function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+         var c = ca[i];
+         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+   }
+
+// Fungsi untuk menghapus cookie
+   function deleteCookie(name) {
+      document.cookie = name + '=; Max-Age=-99999999;';
+   }
+   $(document).ready(function() {
+      $('#show-password-btn').click(function() {
+         var passwordInput = $('#password-input');
+         var passwordInputType = passwordInput.attr('type');
+         var showPasswordBtn = $('#show-password-btn');
+         if (passwordInputType === 'password') {
+            passwordInput.attr('type', 'text');
+            showPasswordBtn.html('<i class="fa-solid fa-eye-slash"></i>');
+         } else {
+            passwordInput.attr('type', 'password');
+            showPasswordBtn.html('<i class="fa-solid fa-eye"></i>');
+         }
+      });
+   });
+ </script>
 
     <!-- Theme Settings Modal Start -->
     <div

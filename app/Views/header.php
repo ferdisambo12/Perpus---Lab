@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Kasir | Ferdi</title>
+    <title>Perpustakaan | FJ</title>
       <base href="<?php echo base_url('assets') ?>/">
 
     <meta name="description" content="Home screen that contains stats, charts, call to action buttons and various listing elements." />
@@ -157,9 +157,9 @@
                 </a>
                 </li>
                 <li>
-                <a href=<?= base_url('/home/data')?>>
+                <a href=<?= base_url('/home/kategori')?>>
                   <i data-cs-icon="money" class="icon" data-cs-size="18"></i>
-                  <span class="label">Data</span>
+                  <span class="label">Kategori Buku</span>
                 </a>
                 </li>
               <li>

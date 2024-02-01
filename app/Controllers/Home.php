@@ -274,12 +274,12 @@ public function aksi_edit_pengguna()
     //     return redirect()->to('/home/dashboard');
     // }
 }
-public function tambah_barang()
+public function tambah_buku()
 {
         // if(session()->get('level')== 4) {
 
     $model=new M_model();
-    $kui['ferdi']=$model->tampil('barang');
+    $kui['ferdi']=$model->tampil('buku');
 
     $id=session()->get('id');
     $where=array('id_user'=>$id);
@@ -288,38 +288,38 @@ public function tambah_barang()
 
     echo view('header',$kui);
     echo view('menu',$kui);
-    echo view('tambah_barang',$kui);
+    echo view('tambah_buku',$kui);
     echo view('footer');
     //     }else{
     //     return redirect()->to('/home/dashboard');
     // }
 }
-public function aksi_tambah_barang()
+public function aksi_tambah_buku()
 {
     $model=new M_model();
-    $nama_barang=$this->request->getPost('nama_barang');
-    $deskripsi_barang=$this->request->getPost('deskripsi_barang');
-    $kode_barang=$this->request->getPost('kode_barang');
-    $harga_barang=$this->request->getPost('harga_barang');
+    $judul_buku=$this->request->getPost('judul_buku');
+    $cover_buku=$this->request->getPost('cover_buku');
+    $kategori_buku=$this->request->getPost('kategori_buku');
+    $tanggal=$this->request->getPost('tanggal');
     $data=array(
        
-        'nama_barang'=>$nama_barang,
-        'deskripsi_barang'=>$deskripsi_barang,
-        'kode_barang'=>$kode_barang,
-        'harga_barang'=>$harga_barang,
+        'judul_buku'=>$judul_buku,
+        'cover_buku'=>$cover_buku,
+        'kategori_buku'=>$kategori_buku,
+        'tanggal'=>$tanggal,
     );
         $model = new M_model();
-        $model->simpan('barang',$data);
-        return redirect()->to('/home/barang');
+        $model->simpan('buku',$data);
+        return redirect()->to('/home/buku');
 }
 
-public function edit_barang($id)
+public function edit_buku($id)
 {
         // if(session()->get('level')== 4) {
 
     $model=new M_model();
-    $where=array('id_barang'=>$id);
-    $kui['ferdi']=$model->getRow('barang', $where);
+    $where=array('id_buku'=>$id);
+    $kui['ferdi']=$model->getRow('buku', $where);
 
     $id=session()->get('id');
     $where=array('id_user'=>$id);
@@ -330,44 +330,44 @@ public function edit_barang($id)
 
     echo view('header',$kui);
     echo view('menu',$kui);
-    echo view('edit_barang',$kui);
+    echo view('edit_buku',$kui);
     echo view('footer');
 
 //     }else{
 //         return redirect()->to('/home/dashboard');
 //     }
 }
-public function aksi_edit_barang()
+public function aksi_edit_buku()
 {
     $model=new M_model();
     $id=$this->request->getPost('id');
-    $nama_barang=$this->request->getPost('nama_barang');
-    $deskripsi_barang=$this->request->getPost('deskripsi_barang');
-    $kode_barang=$this->request->getPost('kode_barang');
-    $harga_barang=$this->request->getPost('harga_barang');
+    $judul_buku=$this->request->getPost('judul_buku');
+    $cover_buku=$this->request->getPost('cover_buku');
+    $kategori_buku=$this->request->getPost('kategori_buku');
+    $tanggal=$this->request->getPost('tanggal');
     $data=array(
-        'nama_barang'=>$nama_barang,
-        'deskripsi_barang'=>$deskripsi_barang,
-        'kode_barang'=>$kode_barang,
-        'harga_barang'=>$harga_barang,
+        'judul_buku'=>$judul_buku,
+        'cover_buku'=>$cover_buku,
+        'kategori_buku'=>$kategori_buku,
+        'tanggal'=>$tanggal,
     );
 
     
 
-        $where=array('id_barang'=>$id);
-        $model->edit('barang',$data,$where);
-        return redirect()->to('/home/barang');
+        $where=array('id_buku'=>$id);
+        $model->edit('buku',$data,$where);
+        return redirect()->to('/home/buku');
         
     }
 
 // ----------------------------------------------------------------------------------------------------------------------------
-    public function data()
+    public function kategori()
     {
  // if(session()->get('level')== 1 || session()->get('level')== 3) {
 
         $model = new M_model();
     // $on='nilai.id_sekolah=sekolah.id_sekolah';
-        $kui['ferdi'] = $model->tampil('data');
+        $kui['ferdi'] = $model->tampil('kategori_buku');
 
         $id=session()->get('id');
         $where=array('id_user'=>$id);
@@ -376,31 +376,31 @@ public function aksi_edit_barang()
 
         echo view('header', $kui);
         echo view('menu');
-        echo view('data');
+        echo view('kategori');
         echo view('footer');
 // }else{
 //     return redirect()->to('/home/dashboard');
 // }
     }
-    public function hapus_data($id)
+    public function hapus_kategori($id)
     {
     // if(session()->get('level')== 1) {
 
         $model=new M_model();
-        $where=array('id_data'=>$id);
-        $model->hapus('data',$where);
-        return redirect()->to('/home/data');
+        $where=array('id_kategori'=>$id);
+        $model->hapus('kategori_buku',$where);
+        return redirect()->to('/home/kategori');
 
     // }else{
     //     return redirect()->to('/home/dashboard');
     // }
     }
-    public function tambah_data()
+    public function tambah_kategori()
     {
         // if(session()->get('level')== 4) {
 
         $model=new M_model();
-        $kui['ferdi']=$model->tampil('data');
+        $kui['ferdi']=$model->tampil('kategori_buku');
 
         $id=session()->get('id');
         $where=array('id_user'=>$id);
@@ -409,37 +409,33 @@ public function aksi_edit_barang()
 
         echo view('header',$kui);
         echo view('menu',$kui);
-        echo view('tambah_data',$kui);
+        echo view('tambah_kategori',$kui);
         echo view('footer');
     //     }else{
     //     return redirect()->to('/home/dashboard');
     // }
     }
-    public function aksi_tambah_data()
+    public function aksi_tambah_kategori()
     {
         $model=new M_model();
-        $no_meja=$this->request->getPost('no_meja');
-        $pembayaran=$this->request->getPost('pembayaran');
-        $total_harga=$this->request->getPost('total_harga');
-        $dibayar=$this->request->getPost('dibayar');
-        $tanggal_transaksi=$this->request->getPost('tanggal_transaksi');
+        $nama_kategori=$this->request->getPost('nama_kategori');
+        $deskripsi_kategori=$this->request->getPost('deskripsi_kategori');
+        $tanggal=$this->request->getPost('tanggal');
         $data=array(
-            'no_meja'=>$no_meja,
-            'pembayaran'=>$pembayaran,
-            'total_harga'=>$total_harga,
-            'dibayar'=>$dibayar,
-            'tanggal_transaksi'=>$tanggal_transaksi,
+            'nama_kategori'=>$nama_kategori,
+            'deskripsi_kategori'=>$deskripsi_kategori,
+            'tanggal'=>$tanggal,
         );
-        $model->simpan('data',$data);
-        return redirect()->to('/home/data');
+        $model->simpan('kategori_buku',$data);
+        return redirect()->to('/home/kategori');
     }
-    public function edit_data($id)
+    public function edit_kategori($id)
     {
         // if(session()->get('level')== 4) {
 
         $model=new M_model();
-        $where=array('id_data'=>$id);
-        $kui['ferdi']=$model->getRow('data', $where);
+        $where=array('id_kategori'=>$id);
+        $kui['ferdi']=$model->getRow('kategori_buku', $where);
 
         $id=session()->get('id');
         $where=array('id_user'=>$id);
@@ -450,32 +446,28 @@ public function aksi_edit_barang()
 
         echo view('header',$kui);
         echo view('menu',$kui);
-        echo view('edit_data',$kui);
+        echo view('edit_kategori',$kui);
         echo view('footer');
 
 //     }else{
 //         return redirect()->to('/home/dashboard');
 //     }
     }
-    public function aksi_edit_data()
+    public function aksi_edit_kategori()
     {
         $model=new M_model();
         $id=$this->request->getPost('id');
-        $no_meja=$this->request->getPost('no_meja');
-        $pembayaran=$this->request->getPost('pembayaran');
-        $total_harga=$this->request->getPost('total_harga');
-        $dibayar=$this->request->getPost('dibayar');
-        $tanggal_transaksi=$this->request->getPost('tanggal_transaksi');
+        $nama_kategori=$this->request->getPost('nama_kategori');
+        $deskripsi_kategori=$this->request->getPost('deskripsi_kategori');
+        $tanggal=$this->request->getPost('tanggal');
         $data=array(
-            'no_meja'=>$no_meja,
-            'pembayaran'=>$pembayaran,
-            'total_harga'=>$total_harga,
-            'dibayar'=>$dibayar,
-            'tanggal_transaksi'=>$tanggal_transaksi,
+            'nama_kategori'=>$nama_kategori,
+            'deskripsi_kategori'=>$deskripsi_kategori,
+            'tanggal'=>$tanggal,
         );
-        $where=array('id_data'=>$id);
-        $model->edit('data',$data,$where);
-        return redirect()->to('/home/data');
+        $where=array('id_kategori'=>$id);
+        $model->edit('kategori_buku',$data,$where);
+        return redirect()->to('/home/kategori');
     }
     public function laporan_transaksi()
     {
